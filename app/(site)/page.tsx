@@ -6,7 +6,6 @@ const page = async () => {
   await sleep(4000);
   console.log("after RootLayout sleep...");
   return <div>HomePage</div>
-  
 };
 
 export default page
