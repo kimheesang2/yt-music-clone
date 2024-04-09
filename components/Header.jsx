@@ -1,19 +1,83 @@
-import React from 'react'
-import { Image } from 'next/image';
+"use client";
+import React, { useState } from 'react';
+import Image from 'next/image';
+import UserIcon from "@/components/UserIcon";
+import PagePadding from "@/components/PagePadding";
+import { FaChromecast } from "react-icons/fa";
+import { FiSearch } from 'react-icons/fi';
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer"
+import Logo from './elments/Logo';
+import Navigator from "./elments/Navigator";
+
+const HeaderDrawer =({children}) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <Drawer direction='left' open={isOpen} onOpenChange={setIsOpen} >
+      <DrawerTrigger>{children}</DrawerTrigger>
+        <DrawerContent className='w-[240px] h-full' >
+          {/* 로고 */}
+          {/* 재생목록 + 재생목록 */}
+          <div className='py-3'>
+            <div className='px-3'>
+              <Logo isInDrawer onClickClose={()=>{setIsOpen(false)}} />
+            </div>
+            <Navigator/>
+          </div>
+        </DrawerContent>
+    </Drawer>
+  )
+}
 
 const Header = ({children}) => {
   return (
-    <header>
-      <section>
+    <header className='relative overflow-y-auto w-full h-full'>
+      {/* bgSection */}
+      <section className=' absolute top-0 w-full'>
         <div className='relative h-[400px] w-full'>
-          <Image
+        <Image
+        alt='mediaItem'
+        className='object-cover'
           fill
-          src="https://unsplash.com/photos/a-truck-driving-down-a-dirt-road-in-front-of-a-mountain-OiF439J1UmA" />
+          src="https://source.unsplash.com/random/?seoul" />
+          <div className='absolute h-[400px] top-0 bg-black opacity-40 w-full'></div>
+          <div className='absolute h-[400px] top-0 bg-gradient-to-t from-black w-full'></div>
         </div>
       </section>
-      <section>{children}</section>
+      {/* searchSection */}
+      <section className='sticky'>
+        <PagePadding>
+          <div className=' h-[64px] flex flex-row justify-between items-center'>
+          <article className=' hidden lg:flex flex-row items-center h-[42px] min-w-[480px] bg-[rgba(0,0,0,0.14)] rounded-2xl px-[16px] gap-[16px] '>
+            <div>
+                <FiSearch size={24} />
+              </div>
+            <input className='h-full w-full bg-transparent' placeholder='노래, 앨범, 아티스트, 팟캐스트 검색' type="text" />
+          </article>
+          <HeaderDrawer>
+            <article className='lg:hidden'>
+              <Logo />
+            </article>
+          </HeaderDrawer>
+          <article className='flex flex0row gap-6 items-center'>
+            <FaChromecast size={26}/>
+          <UserIcon/>
+            </article>
+          </div>
+        </PagePadding>
+      </section>
+      <section className='relative'>{children}</section>
     </header>
   );
 };
 
-export default Header
+export default Header;
