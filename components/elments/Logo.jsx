@@ -6,7 +6,7 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import IconButton from "./IconButton";
 import { IoCloseOutline } from "react-icons/io5";
 
-const Logo = ({ isInDrawer = false }) => {
+const Logo = ({ isInDrawer = false, onClickClose = () => {} }) => {
   const { push } = useRouter();
 
   const onClickLogo = () => {
@@ -15,11 +15,12 @@ const Logo = ({ isInDrawer = false }) => {
 
   const onClickMenu = () => {};
 
+
   return ( 
     <section className="flex flex-row items-center gap-3">
       {isInDrawer ? (
       <IconButton
-      onClickIcon={onClickMenu}
+      onClickIcon={onClickClose}
       icon={<IoCloseOutline size={30} />}
       />
       ) : (
