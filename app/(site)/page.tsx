@@ -1,6 +1,6 @@
 import { sleep } from '@/lib/utils';
 import React from 'react';
-import Category from "@/components/Category";
+import Category from "./components/Category";
 import PagePadding from '@/components/PagePadding';
 import PlayListCarousel from '@/components/PlayListCarousel';
 import { dummyPlaylistArray } from '@/lib/dommyData';
