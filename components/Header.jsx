@@ -41,9 +41,7 @@ const HeaderDrawer =({children}) => {
 };
 
 const Header = ({ children }) => {
-  const {
-    headerImageSrc,
-
+  const {headerImageSrc
   } = useUIState()
 
 const [ isScrolled, setIsScrolled ] = useState(false);
@@ -75,6 +73,7 @@ const headRef = useRef();
           fill
           src={
             headerImageSrc || 
+
             "https://source.unsplash.com/random/?seoul"} 
             />
           <div className='absolute h-[400px] top-0 bg-black opacity-40 w-full'></div>
